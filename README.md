@@ -4,10 +4,10 @@
 Mixtape has other uses too, like providing users with a new way to experiment with their music.  Not everyone likes to jump right into a new genre, but Mixtape provides a new opportunity for usersto choose how they can.  The variety is dependent on the user as they can choose how many albums or playlists to pool together, so they can get a bit of everything or something more specific. Mixtape can pick and choose songs that are similar among playlists, which can allow users to discover songs close to their style.  It can also choose songs at random for users to experiment listening to.
 **
 
-**https://fa22-team-a.herokuapp.com/**
+****
 
 The project is deployed on Heroku:
-[https://cmps-453-project-template.herokuapp.com/](https://cmps-453-project-template.herokuapp.com/)
+[https://fa22-team-a.herokuapp.com/](https://fa22-team-a.herokuapp.com/)
 
 To develop the Django application, clone this repository and follow the instructions:
 
