@@ -1,11 +1,13 @@
-# Project Title
+# Mixtape
 
-**Insert project description here**
+**Mixtape automatically creates a collaborative playlist using your own and any number of friends' music tastes and favorite songs smoothly blended together so that everyone can listen.  Just link any assortment of playlists you want and Mixtape will shuffle through them all.  Mixtape is perfect for providing group sessions with music that each member can enjoy listening to in the background.
+Mixtape has other uses too, like providing users with a new way to experiment with their music.  Not everyone likes to jump right into a new genre, but Mixtape provides a new opportunity for usersto choose how they can.  The variety is dependent on the user as they can choose how many albums or playlists to pool together, so they can get a bit of everything or something more specific. Mixtape can pick and choose songs that are similar among playlists, which can allow users to discover songs close to their style.  It can also choose songs at random for users to experiment listening to.
+**
 
-**Change the URLs of the deployed app on Heroku**
+****
 
 The project is deployed on Heroku:
-[https://cmps-453-project-template.herokuapp.com/](https://cmps-453-project-template.herokuapp.com/)
+[https://fa22-team-a.herokuapp.com/](https://fa22-team-a.herokuapp.com/)
 
 To develop the Django application, clone this repository and follow the instructions:
 
@@ -140,12 +142,12 @@ python manage.py test
 
 **Update the last name, first name, Heroku app name, and URLs in the table below **
 
-| Role     | Last Name | First Name | Heroku App                                    |
-| -------- | --------- | ---------- | --------------------------------------------- |
-| Member A | Last Name | First Name | [heroku_app-a.herokuapp.com](update URL here) |
-| Member B | Last Name | First Name | [heroku_app-b.herokuapp.com](update URL here) |
-| Member C | Last Name | First Name | [heroku_app-c.herokuapp.com](update URL here) |
-| Member D | Last Name | First Name | [heroku_app-d.herokuapp.com](update URL here) |
+| Role     | Last Name  | First Name | Heroku App                           |
+| -------- | ---------- | ---------- | ------------------------------------ |
+| Member A | Washington | Cameron    | https://fa22-team-a-a.herokuapp.com/ |
+| Member B | Canelas    | Amy        | https://fa22-team-a-b.herokuapp.com/ |
+| Member C | Brinkley   | Luke       | https://fa22-team-a-c.herokuapp.com/ |
+| Member D | Lasserre   | Kristian   | https://fa22-team-a-d.herokuapp.com/ |
 
 ## (Optional) Use Docker Containers for Development
 
