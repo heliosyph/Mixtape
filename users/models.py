@@ -67,7 +67,7 @@ class User(models.Model):
     created_playlist = models.BooleanField()
 
     #is the person added to friend list
-    isFriend = models.isBoolean()
+    isFriend = models.BooleanField()
 
     #save the friend's name
     friend_name = models.CharField(max_length = 100)
