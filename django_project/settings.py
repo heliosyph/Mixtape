@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "fontawesomefree",
     # local apps
     "users",
-    "mixtape.app.MixtapeConfig",
+    "mixtape.apps.MixtapeConfig",
 ]
 
 MIDDLEWARE = [

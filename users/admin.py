@@ -5,6 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 from users.forms import CustomUserChangeForm, CustomUserCreationForm
 from users.models import CustomUser
 
+
 class CustomUserAdmin(UserAdmin):
     """Custom User admin view."""
 
@@ -45,4 +46,3 @@ class CustomUserAdmin(UserAdmin):
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
-
