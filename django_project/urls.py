@@ -17,16 +17,13 @@ Including another URLconf
 
 """
 from django.contrib import admin
-from django.contrib.auth.views import (
-    LoginView,
-    LogoutView,
-    PasswordChangeDoneView,
-    PasswordChangeView,
-    PasswordResetCompleteView,
-    PasswordResetConfirmView,
-    PasswordResetDoneView,
-    PasswordResetView,
-)
+from django.contrib.auth.views import (LoginView, LogoutView,
+                                       PasswordChangeDoneView,
+                                       PasswordChangeView,
+                                       PasswordResetCompleteView,
+                                       PasswordResetConfirmView,
+                                       PasswordResetDoneView,
+                                       PasswordResetView)
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.views.generic import TemplateView
@@ -88,6 +85,8 @@ urlpatterns += [
         ),
         name="password_reset_complete",
     ),
+
+    path('mixtape/', include('mixtape.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
