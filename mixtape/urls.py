@@ -1,9 +1,8 @@
 """Urls of mixtape."""
 from django.urls import path
-from mixtape import views
+
 import mixtape
+from mixtape import views
 
-app_name = mixtape
-urlpatterns = [
-
-]
+app_name = "mixtape"
+urlpatterns = []
