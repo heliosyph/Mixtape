@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <ul>
+        <li>Name: {{ object.song_name }}</li>
+        <li>Length: {{ object.song_length }}</li>
+        <li>Artist: {{ object.artist_name }}</li>
+        <li>Album: {{ object.album }}</li>
+        <li>Genre {{ object.song_genre }}</li>
+        <!-- Add more fields if you want to list them here -->
+    </ul>
+{% endblock content %}
