@@ -7,10 +7,14 @@ from mixtape.models import Song
 
 
 class SongListView(generic.ListView):
+    """Song List class."""
+
     model = Song
     template_name = "mixtape/song_list.html"  # file name is lower case
 
 
 class SongDetailView(generic.DetailView):
+    """Song Detail class."""
+
     model = Song
     template_name = "mixtape/song_detail.html"  # file name is lower case
