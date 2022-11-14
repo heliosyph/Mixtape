@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %} {% block content %}
+<ul>
+  <li>Playlist name: {{ object.playlist_name }}</li>
+  <li>Song name: {{ object.song_name }}</li>
+  <li>Creator: {{ object.creator }}</li>
+  <li>Likes: {{ object.likes }}</li>
+  <li>Private: {{ object.isPrivate }}</li>
+  <li>Playlist Description: {{ object.playlist_description }}</li>
+</ul>
+{% endblock content %}
