@@ -8,4 +8,8 @@ app_name = "mixtape"
 urlpatterns = [
     path("Song", views.SongListView.as_view(), name="song_list"),
     path("Song/<int:pk>/", views.SongDetailView.as_view(), name="song_detail"),
+
+    path("Liked", views.LikedListView.as_view(), name="liked_list"),
+    path("Liked/<int:pk>/", views.LikedDetailView.as_view(), name="liked_detail"),
+
 ]
