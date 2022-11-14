@@ -4,9 +4,7 @@
         <ul>
             {% for object in object_list %}
                 <li>
-                    <a href="{% url 'mixtape:song_detail' object.id %}">
-                        {{ object.<object_field> }}
-                    </a>
+                    <a href="{% url 'mixtape:song_detail' object.id %}">{{ object.song_name }}</a>
                 </li>
             {% endfor %}
         </ul>
