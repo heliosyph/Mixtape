@@ -1,9 +1,22 @@
 """views.py."""
 from django.shortcuts import render
 from django.views import generic
-from mixtape.models import Song, Liked
 
-# Create your views here.
+from mixtape.models import Liked, Playlist, Song
+
+
+class PlaylistListView(generic.ListView):
+    """Playlist List class."""
+
+    model = Playlist
+    template_name = "mixtape/playlist_list.html"  # file name is lower case
+
+
+class PlaylistDetailView(generic.DetailView):
+    """Playlist Detail class."""
+
+    model = Playlist
+    template_name = "mixtape/playlist_detail.html"  # file name is lower case
 
 
 class SongListView(generic.ListView):
