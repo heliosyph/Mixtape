@@ -11,7 +11,7 @@ urlpatterns = [
 
     path("Liked", views.LikedListView.as_view(), name="liked_list"),
     path("Liked/<int:pk>/", views.LikedDetailView.as_view(), name="liked_detail"),
-    
+
     path("Playlist", views.PlaylistListView.as_view(), name="playlist_list"),
     path("Playlist/<int:pk>/", views.PlaylistDetailView.as_view(), name="playlist_detail"),
 ]

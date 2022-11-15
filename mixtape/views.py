@@ -1,7 +1,8 @@
 """views.py."""
 from django.shortcuts import render
 from django.views import generic
-from mixtape.models import Song, Liked, Playlist
+
+from mixtape.models import Liked, Playlist, Song
 
 
 class PlaylistListView(generic.ListView):
@@ -44,4 +45,3 @@ class LikedDetailView(generic.DetailView):
 
     model = Liked
     template_name = "mixtape/Liked_detail.html"
-
