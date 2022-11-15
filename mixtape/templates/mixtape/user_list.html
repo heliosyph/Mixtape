@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %} {% block content %} {% if object_list %}
+<ul>
+  {% for object in object_list %}
+  <li>
+    <a href="{% url 'mixtape:user_detail' object.id %}">{{ object.username_creator }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No users are available.</p>
+{% endif %} {% endblock content %}
