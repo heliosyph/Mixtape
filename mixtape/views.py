@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.views import generic
 
-from mixtape.models import Liked, Playlist, Song
+from mixtape.models import Liked, Playlist, Song, User
 
 
 class PlaylistListView(generic.ListView):
@@ -45,3 +45,17 @@ class LikedDetailView(generic.DetailView):
 
     model = Liked
     template_name = "mixtape/Liked_detail.html"
+
+
+class UserListView(generic.ListView):
+    """User List class."""
+
+    model = User
+    template_name = "mixtape/user_list.html"
+
+
+class UserDetailView(generic.DetailView):
+    """User Detail class."""
+
+    model = User
+    template_name = "mixtape/user_detail.html"
