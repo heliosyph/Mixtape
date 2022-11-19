@@ -5,7 +5,16 @@
         <li>Length: {{ object.song_length }}</li>
         <li>Artist: {{ object.artist_name }}</li>
         <li>Album: {{ object.album }}</li>
-        <li>Genre {{ object.song_genre }}</li>
+        <li>Genre: {{ object.song_genre }}</li>
+        <li>
+            Likes:
+            <br/>
+            {% for likes in object.likes.all %}
+                {{ likes }}
+                <br/>
+            {% endfor %}
+        </li>
+        <li>Favorite: {{ object.isFavoriteSong }}</li>
         <!-- Add more fields if you want to list them here -->
     </ul>
 {% endblock content %}
