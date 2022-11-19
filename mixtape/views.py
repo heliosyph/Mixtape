@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.views import generic
 
-from mixtape.models import Liked, Playlist, Song, User
+from mixtape.models import Playlist, Song, User
 
 
 class PlaylistListView(generic.ListView):
@@ -31,20 +31,6 @@ class SongDetailView(generic.DetailView):
 
     model = Song
     template_name = "mixtape/song_detail.html"  # file name is lower case
-
-
-class LikedListView(generic.ListView):
-    """Liked List class."""
-
-    model = Liked
-    template_name = "mixtape/liked_list.html"
-
-
-class LikedDetailView(generic.DetailView):
-    """Liked Detail class."""
-
-    model = Liked
-    template_name = "mixtape/Liked_detail.html"
 
 
 class UserListView(generic.ListView):
