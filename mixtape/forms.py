@@ -1,6 +1,6 @@
 """Forms for mixtape app."""
 from django.forms import ModelForm
-from mixtape.models import Song
+from mixtape.models import Song, Playlist
 
 
 class SongCreateForm(ModelForm):
@@ -38,4 +38,40 @@ class SongUpdateForm(ModelForm):
             "song_genre",
             "likes",
             "isFavoriteSong",
+        )
+
+
+class PlaylistCreateForm(ModelForm):
+    """Playlist creation form."""
+
+    class Meta:
+        """Meta class."""
+
+        model = Playlist
+        # list of fields to be used in the form
+        fields = (
+            "playlist_name",
+            "creator",
+            "likes",
+            "songs",
+            "isPrivate",
+            "playlist_description",
+        )
+
+
+class PlaylistUpdateForm(ModelForm):
+    """Playlist creation form."""
+
+    class Meta:
+        """Meta class."""
+
+        model = Playlist
+        # list of fields to be used in the form
+        fields = (
+            "playlist_name",
+            "creator",
+            "likes",
+            "songs",
+            "isPrivate",
+            "playlist_description",
         )
