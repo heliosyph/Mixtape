@@ -88,7 +88,6 @@ class UserCreateForm(ModelForm):
         # list of fields to be used in the form
         fields = (
             "username_creator",
-            "isFriend",
             "friend_name",
             "favorite_genre",
             "favorite_artist",
@@ -106,7 +105,6 @@ class UserUpdateForm(ModelForm):
         # list of fields to be used in the form
         fields = (
             "username_creator",
-            "isFriend",
             "friend_name",
             "favorite_genre",
             "favorite_artist",
