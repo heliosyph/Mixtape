@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from mixtape.models import Playlist, Song, User
-from mixtape.forms import SongCreateForm, SongUpdateForm
+from mixtape.forms import SongCreateForm, SongUpdateForm, PlaylistCreateForm, PlaylistUpdateForm
 
 
 class PlaylistListView(generic.ListView):
@@ -79,3 +79,35 @@ class SongDeleteView(generic.DeleteView):
     # which page to show upon success
 
     success_url = reverse_lazy("Song")
+
+
+class PlaylistCreateView(generic.CreateView):
+    """Playlist create view."""
+
+    model = Playlist
+    form_class = PlaylistCreateForm
+    template_name = "mixtape/playlist_create.html"
+    # which page to show upon success
+
+    success_url = reverse_lazy("Playlist")
+
+
+class PlaylistUpdateView(generic.CreateView):
+    """Playlist create view."""
+
+    model = Playlist
+    form_class = PlaylistUpdateForm
+    template_name = "mixtape/playlist_update.html"
+    # which page to show upon success
+
+    success_url = reverse_lazy("Playlist")
+
+
+class PlaylistDeleteView(generic.CreateView):
+    """Playlist create view."""
+
+    model = Playlist
+    template_name = "mixtape/playlist_confirm_delete.html"
+    # which page to show upon success
+
+    success_url = reverse_lazy("Playlist")
