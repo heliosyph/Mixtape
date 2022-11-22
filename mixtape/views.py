@@ -3,14 +3,9 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from mixtape.forms import (
-    PlaylistCreateForm,
-    PlaylistUpdateForm,
-    SongCreateForm,
-    SongUpdateForm,
-    UserCreateForm,
-    UserUpdateForm,
-)
+from mixtape.forms import (PlaylistCreateForm, PlaylistUpdateForm,
+                           SongCreateForm, SongUpdateForm, UserCreateForm,
+                           UserUpdateForm)
 from mixtape.models import Playlist, Song, User
 
 
@@ -99,7 +94,7 @@ class PlaylistCreateView(generic.CreateView):
     success_url = reverse_lazy("mixtape:playlist_list")
 
 
-class PlaylistUpdateView(generic.CreateView):
+class PlaylistUpdateView(generic.UpdateView):
     """Playlist create view."""
 
     model = Playlist
@@ -110,7 +105,7 @@ class PlaylistUpdateView(generic.CreateView):
     success_url = reverse_lazy("mixtape:playlist_list")
 
 
-class PlaylistDeleteView(generic.CreateView):
+class PlaylistDeleteView(generic.DeleteView):
     """Playlist create view."""
 
     model = Playlist
