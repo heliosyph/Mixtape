@@ -64,7 +64,7 @@ class SongCreateView(generic.CreateView):
     template_name = "mixtape/song_create.html"
     # which page to show upon success
 
-    success_url = reverse_lazy("Song")
+    success_url = reverse_lazy("mixtape:song_list")
 
 
 class SongUpdateView(generic.UpdateView):
@@ -75,7 +75,7 @@ class SongUpdateView(generic.UpdateView):
     template_name = "mixtape/song_update.html"
     # which page to show upon success
 
-    success_url = reverse_lazy("Song")
+    success_url = reverse_lazy("mixtape:song_list")
 
 
 class SongDeleteView(generic.DeleteView):
@@ -85,7 +85,7 @@ class SongDeleteView(generic.DeleteView):
     template_name = "mixtape/song_confirm_delete.html"
     # which page to show upon success
 
-    success_url = reverse_lazy("Song")
+    success_url = reverse_lazy("mixtape:song_list")
 
 
 class PlaylistCreateView(generic.CreateView):
@@ -96,7 +96,7 @@ class PlaylistCreateView(generic.CreateView):
     template_name = "mixtape/playlist_create.html"
     # which page to show upon success
 
-    success_url = reverse_lazy("Playlist")
+    success_url = reverse_lazy("mixtape:playlist_list")
 
 
 class PlaylistUpdateView(generic.CreateView):
@@ -107,7 +107,7 @@ class PlaylistUpdateView(generic.CreateView):
     template_name = "mixtape/playlist_update.html"
     # which page to show upon success
 
-    success_url = reverse_lazy("Playlist")
+    success_url = reverse_lazy("mixtape:playlist_list")
 
 
 class PlaylistDeleteView(generic.CreateView):
@@ -117,7 +117,7 @@ class PlaylistDeleteView(generic.CreateView):
     template_name = "mixtape/playlist_confirm_delete.html"
     # which page to show upon success
 
-    success_url = reverse_lazy("Playlist")
+    success_url = reverse_lazy("mixtape:playlist_list")
 
 
 class UserCreateView(generic.CreateView):
@@ -128,7 +128,12 @@ class UserCreateView(generic.CreateView):
     template_name = "mixtape/user_create.html"
     # which page to show upon success
     # replace “home” with one of the names in urls_patterns of urls.py
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("mixtape:user_list")
+
+    def form_valid(self, form):
+        """Validate date."""
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class UserUpdateView(generic.UpdateView):
@@ -139,7 +144,7 @@ class UserUpdateView(generic.UpdateView):
     template_name = "mixtape/user_update.html"
     # which page to show upon success
     # replace “home” with one of the names in urls_patterns of urls.py
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("mixtape:user_list")
 
 
 class UserDeleteView(generic.DeleteView):
@@ -149,4 +154,4 @@ class UserDeleteView(generic.DeleteView):
     template_name = "mixtape/user_confirm_delete.html"
     # which page to show upon success
     # replace “home” with one of the names in urls_patterns of urls.py
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("mixtape:user_list")
