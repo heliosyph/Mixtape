@@ -3,9 +3,14 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from mixtape.forms import (PlaylistCreateForm, PlaylistUpdateForm,
-                           SongCreateForm, SongUpdateForm, UserCreateForm,
-                           UserUpdateForm)
+from mixtape.forms import (
+    PlaylistCreateForm,
+    PlaylistUpdateForm,
+    SongCreateForm,
+    SongUpdateForm,
+    UserCreateForm,
+    UserUpdateForm,
+)
 from mixtape.models import Playlist, Song, User
 
 
@@ -21,6 +26,14 @@ class PlaylistDetailView(generic.DetailView):
 
     model = Playlist
     template_name = "mixtape/playlist_detail.html"  # file name is lower case
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["is_owner"] = self.get_object().creator.user == self.request.user
+        print(context)
+        # print(self.get_object().creator)   name
+        # print(self.request.user)   email
+        return context
 
 
 class SongListView(generic.ListView):

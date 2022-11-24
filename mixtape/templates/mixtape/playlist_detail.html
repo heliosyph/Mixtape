@@ -22,4 +22,14 @@
     <li>Private: {{ object.isPrivate }}</li>
     <li>Playlist Description: {{ object.playlist_description }}</li>
   </ul>
+  {% if user.is_authenticated and is_owner %}
+    <a class="btn btn-primary"
+       href="{% url 'mixtape:playlist_update' pk=playlist.pk %}">
+      <i class="fa-solid fa-plus"></i> Update Playlist
+    </a>
+    <a class="btn btn-danger"
+       href="{% url 'mixtape:playlist_delete' pk=playlist.pk %}">
+      <i class="fa-solid fa-trash-can"></i> Delete Playlist
+    </a>
+  {% endif %}
 {% endblock content %}
