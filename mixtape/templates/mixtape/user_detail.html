@@ -1,10 +1,11 @@
-{% extends "base_generic.html" %} {% block content %}
-<ul>
-  <li>Username: {{ object.username_creator }}</li>
-  <li>Friend Name: {{ object.friend_name }}</li>
-  <li>Favorite Genre: {{ object.favorite_genre }}</li>
-  <li>Favorite Artist: {{ object.favorite_artist }}</li>
-  <li>Status Message: {{ object.status }}</li>
-  <!-- Add more fields if you want to list them here -->
-</ul>
+{% extends "base_generic.html" %}
+{% block content %}
+  <ul>
+    <li>Username: {{ object.username_creator }}</li>
+    <li>Friend Name: {{ object.friend_name }}</li>
+    <li>Favorite Genre: {{ object.favorite_genre }}</li>
+    <li>Favorite Artist: {{ object.favorite_artist }}</li>
+    <li>Status Message: {{ object.status }}</li>
+    <!-- Add more fields if you want to list them here -->
+  </ul>
 {% endblock content %}

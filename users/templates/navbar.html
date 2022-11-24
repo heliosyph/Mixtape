@@ -1,7 +1,13 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top justify-content-between" style="background-color: #6f42c1;">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top justify-content-between"
+     style="background-color: #6f42c1;">
     <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="https://cdn3.iconfinder.com/data/icons/information-technology-3/96/Icon_Set_IT_Mixtape-1024.png" class="img-circle" alt="Mixtape" width="30" height="30"> Mixtape
+            <img src="https://cdn3.iconfinder.com/data/icons/information-technology-3/96/Icon_Set_IT_Mixtape-1024.png"
+                 class="img-circle"
+                 alt="Mixtape"
+                 width="30"
+                 height="30">
+            Mixtape
         </a>
         <button class="navbar-toggler"
                 type="button"
@@ -24,6 +30,13 @@
                         <i class="fa-solid fa-people-group"></i> Team
                     </a>
                 </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mixtape:playlist_list' %}">
+                            <i class="fa-solid fa-compact-disc"></i> Playlists
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
         <div class="navbar-collapse collapse" id="#navbarsExampleDefault">
