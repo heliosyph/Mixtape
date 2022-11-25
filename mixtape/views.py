@@ -1,5 +1,5 @@
 """views.py."""
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -36,6 +36,12 @@ class PlaylistDetailView(generic.DetailView):
         # print(self.request.user)   email
         return context
 
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not the owner of the object, redirect; Otherwise, delete."""
+        if self.get_object().owner != self.request.user:
+            return redirect("home")
+        return super().get(request, *args, **kwargs)
+
 
 class SongListView(generic.ListView):
     """Song List class."""
@@ -50,6 +56,12 @@ class SongDetailView(generic.DetailView):
     model = Song
     template_name = "mixtape/song_detail.html"  # file name is lower case
 
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not the owner of the object, redirect; Otherwise, delete."""
+        if self.get_object().owner != self.request.user:
+            return redirect("home")
+        return super().get(request, *args, **kwargs)
+
 
 class UserListView(generic.ListView):
     """User List class."""
@@ -63,6 +75,12 @@ class UserDetailView(generic.DetailView):
 
     model = User
     template_name = "mixtape/user_detail.html"
+
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not the owner of the object, redirect; Otherwise, delete."""
+        if self.get_object().owner != self.request.user:
+            return redirect("home")
+        return super().get(request, *args, **kwargs)
 
 
 class SongCreateView(generic.CreateView):
