@@ -20,6 +20,12 @@ class PlaylistListView(generic.ListView):
     model = Playlist
     template_name = "mixtape/playlist_list.html"  # file name is lower case
 
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not logged in, redirect to sign in page."""
+        if not self.request.user.is_authenticated:
+            return redirect("login")
+        return super().get(request, *args, **kwargs)
+
 
 class PlaylistDetailView(generic.DetailView):
     """Playlist Detail class."""
@@ -37,9 +43,9 @@ class PlaylistDetailView(generic.DetailView):
         return context
 
     def get(self, request: object, *args, **kwargs) -> object:
-        """If user is not the owner of the object, redirect; Otherwise, delete."""
-        if self.get_object().owner != self.request.user:
-            return redirect("home")
+        """If user is not logged in, redirect to sign in page."""
+        if not self.request.user.is_authenticated:
+            return redirect("login")
         return super().get(request, *args, **kwargs)
 
 
@@ -49,6 +55,12 @@ class SongListView(generic.ListView):
     model = Song
     template_name = "mixtape/song_list.html"  # file name is lower case
 
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not logged in, redirect to sign in page."""
+        if not self.request.user.is_authenticated:
+            return redirect("login")
+        return super().get(request, *args, **kwargs)
+
 
 class SongDetailView(generic.DetailView):
     """Song Detail class."""
@@ -57,9 +69,9 @@ class SongDetailView(generic.DetailView):
     template_name = "mixtape/song_detail.html"  # file name is lower case
 
     def get(self, request: object, *args, **kwargs) -> object:
-        """If user is not the owner of the object, redirect; Otherwise, delete."""
-        if self.get_object().owner != self.request.user:
-            return redirect("home")
+        """If user is not logged in, redirect to sign in page."""
+        if not self.request.user.is_authenticated:
+            return redirect("login")
         return super().get(request, *args, **kwargs)
 
 
@@ -69,6 +81,12 @@ class UserListView(generic.ListView):
     model = User
     template_name = "mixtape/user_list.html"
 
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not logged in, redirect to sign in page."""
+        if not self.request.user.is_authenticated:
+            return redirect("login")
+        return super().get(request, *args, **kwargs)
+
 
 class UserDetailView(generic.DetailView):
     """User Detail class."""
@@ -77,9 +95,9 @@ class UserDetailView(generic.DetailView):
     template_name = "mixtape/user_detail.html"
 
     def get(self, request: object, *args, **kwargs) -> object:
-        """If user is not the owner of the object, redirect; Otherwise, delete."""
-        if self.get_object().owner != self.request.user:
-            return redirect("home")
+        """If user is not logged in, redirect to sign in page."""
+        if not self.request.user.is_authenticated:
+            return redirect("login")
         return super().get(request, *args, **kwargs)
 
 
@@ -92,6 +110,12 @@ class SongCreateView(generic.CreateView):
     # which page to show upon success
 
     success_url = reverse_lazy("mixtape:song_list")
+
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not logged in, redirect to sign in page."""
+        if not self.request.user.is_authenticated:
+            return redirect("login")
+        return super().get(request, *args, **kwargs)
 
 
 class SongUpdateView(generic.UpdateView):
