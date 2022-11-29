@@ -9,7 +9,7 @@
 
           <h2>@{{ object.username_creator }}</h2>
 
-          <a class="btn btn-primary btn-xs" href="http://127.0.0.1:8000/mixtape/User" role="button">Friends</a>
+          <a class="btn btn-primary btn-xs" href="{% url 'mixtape:user_list' %}">Friends</a>
         </div>
         <ul>
             <li>Favorite Genre: {{ object.favorite_genre }}</li>
