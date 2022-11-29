@@ -150,7 +150,6 @@ class PlaylistCreateView(generic.CreateView):
     extra_context = {"title_text": "Creating a New Playlist", "button_text": "Create"}
 
 
-
 class PlaylistUpdateView(generic.UpdateView):
     """Playlist update view."""
 
@@ -184,7 +183,6 @@ class UserCreateView(generic.CreateView):
     # replace “home” with one of the names in urls_patterns of urls.py
     success_url = reverse_lazy("mixtape:user_list")
     extra_context = {"title_text": "Creating a New User!", "button_text": "Create"}
-
 
     def form_valid(self, form):
         """Validate date."""
