@@ -17,4 +17,14 @@
         <li>Favorite: {{ object.isFavoriteSong }}</li>
         <!-- Add more fields if you want to list them here -->
     </ul>
+    {% if user.is_superuser %}
+        <a class="btn btn-primary"
+           href="{% url 'mixtape:song_update' pk=song.pk %}">
+            <i class="fa-solid fa-plus"></i> Update Song
+        </a>
+        <a class="btn btn-danger"
+           href="{% url 'mixtape:song_delete' pk=song.pk %}">
+            <i class="fa-solid fa-trash-can"></i> Delete Song
+        </a>
+    {% endif %}
 {% endblock content %}
