@@ -3,14 +3,9 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from mixtape.forms import (
-    PlaylistCreateForm,
-    PlaylistUpdateForm,
-    SongCreateForm,
-    SongUpdateForm,
-    UserCreateForm,
-    UserUpdateForm,
-)
+from mixtape.forms import (PlaylistCreateForm, PlaylistUpdateForm,
+                           SongCreateForm, SongUpdateForm, UserCreateForm,
+                           UserUpdateForm)
 from mixtape.models import Playlist, Song, User
 
 
@@ -106,10 +101,12 @@ class SongCreateView(generic.CreateView):
 
     model = Song
     form_class = SongCreateForm
-    template_name = "mixtape/song_create.html"
+    # template_name = "mixtape/song_create.html"
+    template_name = "mixtape/generic_create_update_form.html"
     # which page to show upon success
 
     success_url = reverse_lazy("mixtape:song_list")
+    extra_context = {"title_text": "Adding a New Song!", "button_text": "Create"}
 
     def get(self, request: object, *args, **kwargs) -> object:
         """If user is not logged in, redirect to sign in page."""
@@ -123,16 +120,11 @@ class SongUpdateView(generic.UpdateView):
 
     model = Song
     form_class = SongUpdateForm
-    template_name = "mixtape/song_update.html"
+    template_name = "mixtape/generic_create_update_form.html"
     # which page to show upon success
 
     success_url = reverse_lazy("mixtape:song_list")
-
-    def get(self, request: object, *args, **kwargs) -> object:
-        """If user is not a super user, return to home page."""
-        if not self.request.user.is_superuser:
-            return redirect("home")
-        return super().get(request, *args, **kwargs)
+    extra_context = {"title_text": "Update Song", "button_text": "Update"}
 
 
 class SongDeleteView(generic.DeleteView):
@@ -144,45 +136,31 @@ class SongDeleteView(generic.DeleteView):
 
     success_url = reverse_lazy("mixtape:song_list")
 
-    def get(self, request: object, *args, **kwargs) -> object:
-        """If user is not a super user, return to home page."""
-        if not self.request.user.is_superuser:
-            return redirect("home")
-        return super().get(request, *args, **kwargs)
-
 
 class PlaylistCreateView(generic.CreateView):
     """Playlist create view."""
 
     model = Playlist
     form_class = PlaylistCreateForm
-    template_name = "mixtape/playlist_create.html"
+    # template_name = "mixtape/playlist_create.html"
+    template_name = "mixtape/generic_create_update_form.html"
     # which page to show upon success
 
     success_url = reverse_lazy("mixtape:playlist_list")
+    extra_context = {"title_text": "Creating a New Playlist", "button_text": "Create"}
 
-    def get(self, request: object, *args, **kwargs) -> object:
-        """If user is not logged in, redirect to sign in page."""
-        if not self.request.user.is_authenticated:
-            return redirect("login")
-        return super().get(request, *args, **kwargs)
 
 
 class PlaylistUpdateView(generic.UpdateView):
-    """Playlist create view."""
+    """Playlist update view."""
 
     model = Playlist
     form_class = PlaylistUpdateForm
-    template_name = "mixtape/playlist_update.html"
+    template_name = "mixtape/generic_create_update_form.html"
     # which page to show upon success
 
     success_url = reverse_lazy("mixtape:playlist_list")
-
-    def get(self, request: object, *args, **kwargs) -> object:
-        """If user is not the owner of the object, redirect; Otherwise, show details."""
-        if self.get_object().creator.user != self.request.user:
-            return redirect("home")
-        return super().get(request, *args, **kwargs)
+    extra_context = {"title_text": "Updating Playlist", "button_text": "Update"}
 
 
 class PlaylistDeleteView(generic.DeleteView):
@@ -194,22 +172,19 @@ class PlaylistDeleteView(generic.DeleteView):
 
     success_url = reverse_lazy("mixtape:playlist_list")
 
-    def get(self, request: object, *args, **kwargs) -> object:
-        """If user is not the owner of the object, redirect; Otherwise, show details."""
-        if self.get_object().creator.user != self.request.user:
-            return redirect("home")
-        return super().get(request, *args, **kwargs)
-
 
 class UserCreateView(generic.CreateView):
     """User create view."""
 
     model = User
     form_class = UserCreateForm
-    template_name = "mixtape/user_create.html"
+    # template_name = "mixtape/user_create.html"
+    template_name = "mixtape/generic_create_update_form.html"
     # which page to show upon success
     # replace “home” with one of the names in urls_patterns of urls.py
     success_url = reverse_lazy("mixtape:user_list")
+    extra_context = {"title_text": "Creating a New User!", "button_text": "Create"}
+
 
     def form_valid(self, form):
         """Validate date."""
@@ -222,29 +197,18 @@ class UserUpdateView(generic.UpdateView):
 
     model = User
     form_class = UserUpdateForm
-    template_name = "mixtape/user_update.html"
+    template_name = "mixtape/generic_create_update_form.html"
     # which page to show upon success
     # replace “home” with one of the names in urls_patterns of urls.py
     success_url = reverse_lazy("mixtape:user_list")
-
-    def get(self, request: object, *args, **kwargs) -> object:
-        """If user is not the owner of the object, redirect; Otherwise, show details."""
-        if self.get_object().user != self.request.user:
-            return redirect("home")
-        return super().get(request, *args, **kwargs)
+    extra_context = {"title_text": "Updating Existing User!", "button_text": "Update"}
 
 
 class UserDeleteView(generic.DeleteView):
-    """User create view."""
+    """User delete view."""
 
     model = User
     template_name = "mixtape/user_confirm_delete.html"
     # which page to show upon success
     # replace “home” with one of the names in urls_patterns of urls.py
     success_url = reverse_lazy("mixtape:user_list")
-
-    def get(self, request: object, *args, **kwargs) -> object:
-        """If user is not the owner of the object, redirect; Otherwise, show details."""
-        if self.get_object().user != self.request.user:
-            return redirect("home")
-        return super().get(request, *args, **kwargs)

@@ -117,6 +117,7 @@ class SignUpViewTestCase(TestCase):
                     "password1": "password",
                     "password2": "password",
                 },
+                #stays in same page due to the error
                 HTTPStatus.OK,
             ),
         ]
@@ -136,16 +137,20 @@ class SignUpViewTestCase(TestCase):
 class LoginTestCase(TestCase):
     """Tests for Django's built-in `Login` view."""
 
+    # in memory only meant to be accessed through loginTestCase
+
     def setUp(self):
         """Set up test data for the class."""
         self.login_url = reverse("login")
         self.logout_url = reverse("logout")
 
         self.login_params = {"username": "jdoe@gmail.com", "password": "p@$$W0RDL@rG3"}
+        #datamodel -> CustomUser: creating a database entry
         CustomUser.objects.create_user(email="jdoe@gmail.com", password="p@$$W0RDL@rG3")
 
     def test_signinview(self):
         """Test `SignUpView`, it should redirect."""
+
         response = self.client.post(self.login_url, data=self.login_params)
         # redirects after a successful login
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
