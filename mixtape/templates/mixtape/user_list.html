@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %} {% block content %} {% if object_list %}
 <ul>
+  <h3>Created Users</h3>
   {% for object in object_list %}
   <li>
     <a href="{% url 'mixtape:user_detail' object.id %}">{{ object.username_creator }}</a>

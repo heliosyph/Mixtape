@@ -1,11 +1,35 @@
 {% extends "base_generic.html" %}
 {% block content %}
-  <ul>
-    <li>Username: {{ object.username_creator }}</li>
-    <li>Friend Name: {{ object.friend_name }}</li>
-    <li>Favorite Genre: {{ object.favorite_genre }}</li>
-    <li>Favorite Artist: {{ object.favorite_artist }}</li>
-    <li>Status Message: {{ object.status }}</li>
-    <!-- Add more fields if you want to list them here -->
-  </ul>
+  <body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="text-center">
+          <img src="https://via.placeholder.com/300X250" />
+
+          <h2>@{{ object.username_creator }}</h2>
+
+          <a class="btn btn-primary btn-xs" href="http://127.0.0.1:8000/mixtape/User" role="button">Friends</a>
+        </div>
+        <ul>
+            <li>Favorite Genre: {{ object.favorite_genre }}</li>
+            <li>Favorite Artist: {{ object.favorite_artist }}</li>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <div class="text-center">
+
+          <h3>Status Message</h2>
+
+          <p>{{ object.status }}</p>
+
+          <div class="text-end">
+            <a class="btn btn-primary btn-xs" href="#" role="button">Update Status</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 {% endblock content %}

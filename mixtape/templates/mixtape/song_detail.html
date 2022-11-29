@@ -1,30 +1,54 @@
 {% extends "base_generic.html" %}
 {% block content %}
-    <ul>
-        <li>Name: {{ object.song_name }}</li>
-        <li>Length: {{ object.song_length }}</li>
-        <li>Artist: {{ object.artist_name }}</li>
-        <li>Album: {{ object.album }}</li>
-        <li>Genre: {{ object.song_genre }}</li>
-        <li>
-            Likes:
-            <br/>
-            {% for likes in object.likes.all %}
-                {{ likes }}
-                <br/>
-            {% endfor %}
-        </li>
-        <li>Favorite: {{ object.isFavoriteSong }}</li>
-        <!-- Add more fields if you want to list them here -->
-    </ul>
-    {% if user.is_superuser %}
-        <a class="btn btn-primary"
-           href="{% url 'mixtape:song_update' pk=song.pk %}">
-            <i class="fa-solid fa-plus"></i> Update Song
-        </a>
-        <a class="btn btn-danger"
-           href="{% url 'mixtape:song_delete' pk=song.pk %}">
-            <i class="fa-solid fa-trash-can"></i> Delete Song
-        </a>
-    {% endif %}
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="text-center">
+          <img src="https://via.placeholder.com/300X250" />
+
+          <h1>{{ object.song_name }}
+          {% if object.isFavoriteSong %}
+          <i class='fa fa-heart' style='color: red'></i>
+          {% endif %}
+          </h1>
+          <h2>{{ object.album }}</h2>
+          <h3>Song by: {{ object.artist_name }}</h3>
+          <p>Song Length: {{ object.song_length }}</p>
+          <br />
+          <p>{{ object.song_genre }}</p>
+          <br />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+      <div class="text-center">
+          <h4>Liked by:</h4>
+          <br />
+          {% for likes in object.likes.all %}
+          <a class="btn btn-light" href="{% url 'mixtape:user_detail' pk=user.pk %}">
+            <i class="fa-solid fa-user"></i> {{ likes }}
+          </a>
+          <br />
+          {% endfor %}
+        </div>
+
+          <div class="text-center">
+            {% if user.is_superuser %}
+                <a class="btn btn-primary"
+                    href="{% url 'mixtape:song_update' pk=song.pk %}">
+                    <i class="fa-solid fa-plus"></i> Update Song
+                </a>
+                <a class="btn btn-danger"
+                    href="{% url 'mixtape:song_delete' pk=song.pk %}">
+                    <i class="fa-solid fa-trash-can"></i> Delete Song
+                </a>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 {% endblock content %}

@@ -1,29 +1,56 @@
 {% extends "base_generic.html" %} {% block content %}
-<ul>
-  <li>Playlist name: {{ object.playlist_name }}</li>
-  <li>Creator: {{ object.creator }}</li>
-  <li>
-    Likes:
-    <br />
-    {% for likes in object.likes.all %} {{ likes }}
-    <br />
-    {% endfor %}
-  </li>
-  <li>
-    Songs:
-    <br />
-    {% for songs in object.songs.all %} {{ songs }}
-    <br />
-    {% endfor %}
-  </li>
-  <li>Private: {{ object.isPrivate }}</li>
-  <li>Playlist Description: {{ object.playlist_description }}</li>
-</ul>
-{% if user.is_authenticated and is_owner %}
-<a class="btn btn-primary" href="{% url 'mixtape:playlist_update' pk=playlist.pk %}">
-  <i class="fa-solid fa-plus"></i> Update Playlist
-</a>
-<a class="btn btn-danger" href="{% url 'mixtape:playlist_delete' pk=playlist.pk %}">
-  <i class="fa-solid fa-trash-can"></i> Delete Playlist
-</a>
-{% endif %} {% endblock content %}
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="text-center">
+          <img src="https://via.placeholder.com/300X250" />
+
+          <h1>{{ object.playlist_name }}</h1>
+          <h2>Created by: {{ object.creator }}</h2>
+          {% if object.isPrivate %}
+          <h3>Not Public</h3>
+          {% endif %}
+          <p>Playlist Description: {{ object.playlist_description }}</p>
+          <br />
+        </div>
+        <div class="text-start">
+          <h4>Songs:</h4>
+          <br />
+          {% for songs in object.songs.all %}
+          <a class="btn btn-light" href="{% url 'mixtape:song_detail' object.id %}">
+            <i class="fa-solid fa-music"></i> {{ songs }}
+          </a>
+          <br />
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="col-md-4">
+      <div class="text-center">
+          <h4>Liked by:</h4>
+          <br />
+          {% for likes in object.likes.all %}
+          <a class="btn btn-light" href="{% url 'mixtape:user_detail' pk=user.pk %}">
+            <i class="fa-solid fa-user"></i> {{ likes }}
+          </a>
+          <br />
+          {% endfor %}
+        </div>
+
+          <div class="text-center">
+            {% if user.is_authenticated and is_owner %}
+              <a class="btn btn-primary" href="{% url 'mixtape:playlist_update' pk=playlist.pk %}">
+                <i class="fa-solid fa-plus"></i> Update Playlist
+              </a>
+              <a class="btn btn-danger" href="{% url 'mixtape:playlist_delete' pk=playlist.pk %}">
+                <i class="fa-solid fa-trash-can"></i> Delete Playlist
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock content %}
