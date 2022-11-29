@@ -126,6 +126,13 @@ class SongUpdateView(generic.UpdateView):
     success_url = reverse_lazy("mixtape:song_list")
     extra_context = {"title_text": "Update Song", "button_text": "Update"}
 
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not a super user, return to home page."""
+        if not self.request.user.is_superuser:
+            return redirect("home")
+        return super().get(request, *args, **kwargs)
+
+
 
 class SongDeleteView(generic.DeleteView):
     """Song delete view."""
@@ -135,6 +142,13 @@ class SongDeleteView(generic.DeleteView):
     # which page to show upon success
 
     success_url = reverse_lazy("mixtape:song_list")
+
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not a super user, return to home page."""
+        if not self.request.user.is_superuser:
+            return redirect("home")
+        return super().get(request, *args, **kwargs)
+
 
 
 class PlaylistCreateView(generic.CreateView):
@@ -149,6 +163,13 @@ class PlaylistCreateView(generic.CreateView):
     success_url = reverse_lazy("mixtape:playlist_list")
     extra_context = {"title_text": "Creating a New Playlist", "button_text": "Create"}
 
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not logged in, redirect to sign in page."""
+        if not self.request.user.is_authenticated:
+            return redirect("login")
+        return super().get(request, *args, **kwargs)
+
+
 
 class PlaylistUpdateView(generic.UpdateView):
     """Playlist update view."""
@@ -161,6 +182,15 @@ class PlaylistUpdateView(generic.UpdateView):
     success_url = reverse_lazy("mixtape:playlist_list")
     extra_context = {"title_text": "Updating Playlist", "button_text": "Update"}
 
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not the owner of the object, redirect; Otherwise, show details."""
+        if self.get_object().creator.user != self.request.user:
+            return redirect("home")
+        return super().get(request, *args, **kwargs)
+
+
+
+
 
 class PlaylistDeleteView(generic.DeleteView):
     """Playlist create view."""
@@ -170,6 +200,13 @@ class PlaylistDeleteView(generic.DeleteView):
     # which page to show upon success
 
     success_url = reverse_lazy("mixtape:playlist_list")
+
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not the owner of the object, redirect; Otherwise, show details."""
+        if self.get_object().creator.user != self.request.user:
+            return redirect("home")
+        return super().get(request, *args, **kwargs)
+
 
 
 class UserCreateView(generic.CreateView):
@@ -201,6 +238,13 @@ class UserUpdateView(generic.UpdateView):
     success_url = reverse_lazy("mixtape:user_list")
     extra_context = {"title_text": "Updating Existing User!", "button_text": "Update"}
 
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not the owner of the object, redirect; Otherwise, show details."""
+        if self.get_object().user != self.request.user:
+            return redirect("home")
+        return super().get(request, *args, **kwargs)
+
+
 
 class UserDeleteView(generic.DeleteView):
     """User delete view."""
@@ -210,3 +254,10 @@ class UserDeleteView(generic.DeleteView):
     # which page to show upon success
     # replace “home” with one of the names in urls_patterns of urls.py
     success_url = reverse_lazy("mixtape:user_list")
+
+    def get(self, request: object, *args, **kwargs) -> object:
+        """If user is not the owner of the object, redirect; Otherwise, show details."""
+        if self.get_object().user != self.request.user:
+            return redirect("home")
+        return super().get(request, *args, **kwargs)
+

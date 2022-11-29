@@ -9,7 +9,7 @@
 {% else %}
 <p>No playlist_detail are available.</p>
 {% endif %} {% if user.is_authenticated %}
-<a class="btn btn-primary" href="{% url 'mixtape:playlist_delete' %}">
+<a class="btn btn-primary" href="{% url 'mixtape:playlist_create' %}">
   <i class="fa-solid fa-plus"></i> Create Playlist
 </a>
 {% endif %} {% endblock content %}
