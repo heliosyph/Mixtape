@@ -136,6 +136,8 @@ class SignUpViewTestCase(TestCase):
 class LoginTestCase(TestCase):
     """Tests for Django's built-in `Login` view."""
 
+    # in memory only meant to be accessed through loginTestCase
+
     def setUp(self):
         """Set up test data for the class."""
         self.login_url = reverse("login")
@@ -147,7 +149,6 @@ class LoginTestCase(TestCase):
     def test_signinview(self):
         """Test `SignUpView`, it should redirect."""
         response = self.client.post(self.login_url, data=self.login_params)
-        # redirects after a successful login
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         response = self.client.get(reverse("home"))
         self.assertEqual(str(response.context.get("user")), "jdoe@gmail.com")
