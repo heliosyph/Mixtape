@@ -11,4 +11,9 @@
     {% else %}
         <p>No songs are available.</p>
     {% endif %}
+    {% if user.is_authenticated %}
+        <a class="btn btn-primary" href="{% url 'mixtape:song_create' %}">
+            <i class="fa-solid fa-plus"></i> Create Song
+        </a>
+    {% endif %}
 {% endblock content %}
