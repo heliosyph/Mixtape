@@ -133,7 +133,6 @@ class SongUpdateView(generic.UpdateView):
         return super().get(request, *args, **kwargs)
 
 
-
 class SongDeleteView(generic.DeleteView):
     """Song delete view."""
 
@@ -148,7 +147,6 @@ class SongDeleteView(generic.DeleteView):
         if not self.request.user.is_superuser:
             return redirect("home")
         return super().get(request, *args, **kwargs)
-
 
 
 class PlaylistCreateView(generic.CreateView):
@@ -170,7 +168,6 @@ class PlaylistCreateView(generic.CreateView):
         return super().get(request, *args, **kwargs)
 
 
-
 class PlaylistUpdateView(generic.UpdateView):
     """Playlist update view."""
 
@@ -189,9 +186,6 @@ class PlaylistUpdateView(generic.UpdateView):
         return super().get(request, *args, **kwargs)
 
 
-
-
-
 class PlaylistDeleteView(generic.DeleteView):
     """Playlist create view."""
 
@@ -206,7 +200,6 @@ class PlaylistDeleteView(generic.DeleteView):
         if self.get_object().creator.user != self.request.user:
             return redirect("home")
         return super().get(request, *args, **kwargs)
-
 
 
 class UserCreateView(generic.CreateView):
@@ -245,7 +238,6 @@ class UserUpdateView(generic.UpdateView):
         return super().get(request, *args, **kwargs)
 
 
-
 class UserDeleteView(generic.DeleteView):
     """User delete view."""
 
@@ -260,4 +252,3 @@ class UserDeleteView(generic.DeleteView):
         if self.get_object().user != self.request.user:
             return redirect("home")
         return super().get(request, *args, **kwargs)
-
