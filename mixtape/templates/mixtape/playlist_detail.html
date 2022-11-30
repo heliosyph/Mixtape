@@ -18,7 +18,7 @@
           <h4>Songs:</h4>
           <br />
           {% for songs in object.songs.all %}
-          <a class="btn btn-light" href="{% url 'mixtape:song_detail' object.id %}">
+          <a class="btn btn-light" href="{% url 'mixtape:song_detail' songs.id %}">
             <i class="fa-solid fa-music"></i> {{ songs }}
           </a>
           <br />
@@ -31,7 +31,7 @@
           <h4>Liked by:</h4>
           <br />
           {% for likes in object.likes.all %}
-          <a class="btn btn-light" href="{% url 'mixtape:user_detail' pk=user.pk %}">
+          <a class="btn btn-light" href="{% url 'mixtape:user_detail' likes.id %}">
             <i class="fa-solid fa-user"></i> {{ likes }}
           </a>
           <br />
