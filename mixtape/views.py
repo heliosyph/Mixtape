@@ -1,15 +1,14 @@
 """views.py."""
-from django.shortcuts import redirect, render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from mixtape.forms import (PlaylistCreateForm, PlaylistUpdateForm,
-                           SongCreateForm, SongUpdateForm, UserCreateForm,
-                           UserUpdateForm)
+from mixtape import forms
 from mixtape.models import Playlist, Song, User
 
 
-class PlaylistListView(generic.ListView):
+class PlaylistListView(LoginRequiredMixin, generic.ListView):
     """Playlist List class."""
 
     model = Playlist
@@ -22,7 +21,7 @@ class PlaylistListView(generic.ListView):
         return super().get(request, *args, **kwargs)
 
 
-class PlaylistDetailView(generic.DetailView):
+class PlaylistDetailView(LoginRequiredMixin, generic.DetailView):
     """Playlist Detail class."""
 
     model = Playlist
@@ -32,9 +31,6 @@ class PlaylistDetailView(generic.DetailView):
         """Check if user owns playlist."""
         context = super().get_context_data(**kwargs)
         context["is_owner"] = self.get_object().creator.user == self.request.user
-        # print(context)
-        # print(self.get_object().creator)   name
-        # print(self.request.user)   email
         return context
 
     def get(self, request: object, *args, **kwargs) -> object:
@@ -44,7 +40,7 @@ class PlaylistDetailView(generic.DetailView):
         return super().get(request, *args, **kwargs)
 
 
-class SongListView(generic.ListView):
+class SongListView(LoginRequiredMixin, generic.ListView):
     """Song List class."""
 
     model = Song
@@ -57,7 +53,7 @@ class SongListView(generic.ListView):
         return super().get(request, *args, **kwargs)
 
 
-class SongDetailView(generic.DetailView):
+class SongDetailView(LoginRequiredMixin, generic.DetailView):
     """Song Detail class."""
 
     model = Song
@@ -70,7 +66,7 @@ class SongDetailView(generic.DetailView):
         return super().get(request, *args, **kwargs)
 
 
-class UserListView(generic.ListView):
+class UserListView(LoginRequiredMixin, generic.ListView):
     """User List class."""
 
     model = User
@@ -83,7 +79,7 @@ class UserListView(generic.ListView):
         return super().get(request, *args, **kwargs)
 
 
-class UserDetailView(generic.DetailView):
+class UserDetailView(LoginRequiredMixin, generic.DetailView):
     """User Detail class."""
 
     model = User
@@ -96,15 +92,12 @@ class UserDetailView(generic.DetailView):
         return super().get(request, *args, **kwargs)
 
 
-class SongCreateView(generic.CreateView):
+class SongCreateView(LoginRequiredMixin, generic.CreateView):
     """Song create view."""
 
     model = Song
-    form_class = SongCreateForm
-    # template_name = "mixtape/song_create.html"
+    form_class = forms.SongCreateForm
     template_name = "mixtape/generic_create_update_form.html"
-    # which page to show upon success
-
     success_url = reverse_lazy("mixtape:song_list")
     extra_context = {"title_text": "Adding a New Song!", "button_text": "Create"}
 
@@ -115,14 +108,12 @@ class SongCreateView(generic.CreateView):
         return super().get(request, *args, **kwargs)
 
 
-class SongUpdateView(generic.UpdateView):
+class SongUpdateView(LoginRequiredMixin, generic.UpdateView):
     """Song update view."""
 
     model = Song
-    form_class = SongUpdateForm
+    form_class = forms.SongUpdateForm
     template_name = "mixtape/generic_create_update_form.html"
-    # which page to show upon success
-
     success_url = reverse_lazy("mixtape:song_list")
     extra_context = {"title_text": "Update Song", "button_text": "Update"}
 
@@ -133,13 +124,11 @@ class SongUpdateView(generic.UpdateView):
         return super().get(request, *args, **kwargs)
 
 
-class SongDeleteView(generic.DeleteView):
+class SongDeleteView(LoginRequiredMixin, generic.DeleteView):
     """Song delete view."""
 
     model = Song
     template_name = "mixtape/song_confirm_delete.html"
-    # which page to show upon success
-
     success_url = reverse_lazy("mixtape:song_list")
 
     def get(self, request: object, *args, **kwargs) -> object:
@@ -149,15 +138,12 @@ class SongDeleteView(generic.DeleteView):
         return super().get(request, *args, **kwargs)
 
 
-class PlaylistCreateView(generic.CreateView):
+class PlaylistCreateView(LoginRequiredMixin, generic.CreateView):
     """Playlist create view."""
 
     model = Playlist
-    form_class = PlaylistCreateForm
-    # template_name = "mixtape/playlist_create.html"
+    form_class = forms.PlaylistCreateForm
     template_name = "mixtape/generic_create_update_form.html"
-    # which page to show upon success
-
     success_url = reverse_lazy("mixtape:playlist_list")
     extra_context = {"title_text": "Creating a New Playlist", "button_text": "Create"}
 
@@ -168,14 +154,12 @@ class PlaylistCreateView(generic.CreateView):
         return super().get(request, *args, **kwargs)
 
 
-class PlaylistUpdateView(generic.UpdateView):
+class PlaylistUpdateView(LoginRequiredMixin, generic.UpdateView):
     """Playlist update view."""
 
     model = Playlist
-    form_class = PlaylistUpdateForm
+    form_class = forms.PlaylistUpdateForm
     template_name = "mixtape/generic_create_update_form.html"
-    # which page to show upon success
-
     success_url = reverse_lazy("mixtape:playlist_list")
     extra_context = {"title_text": "Updating Playlist", "button_text": "Update"}
 
@@ -186,13 +170,11 @@ class PlaylistUpdateView(generic.UpdateView):
         return super().get(request, *args, **kwargs)
 
 
-class PlaylistDeleteView(generic.DeleteView):
+class PlaylistDeleteView(LoginRequiredMixin, generic.DeleteView):
     """Playlist create view."""
 
     model = Playlist
     template_name = "mixtape/playlist_confirm_delete.html"
-    # which page to show upon success
-
     success_url = reverse_lazy("mixtape:playlist_list")
 
     def get(self, request: object, *args, **kwargs) -> object:
@@ -202,15 +184,12 @@ class PlaylistDeleteView(generic.DeleteView):
         return super().get(request, *args, **kwargs)
 
 
-class UserCreateView(generic.CreateView):
+class UserCreateView(LoginRequiredMixin, generic.CreateView):
     """User create view."""
 
     model = User
-    form_class = UserCreateForm
-    # template_name = "mixtape/user_create.html"
+    form_class = forms.UserCreateForm
     template_name = "mixtape/generic_create_update_form.html"
-    # which page to show upon success
-    # replace “home” with one of the names in urls_patterns of urls.py
     success_url = reverse_lazy("mixtape:user_list")
     extra_context = {"title_text": "Creating a New User!", "button_text": "Create"}
 
@@ -221,14 +200,12 @@ class UserCreateView(generic.CreateView):
         return super().form_valid(form)
 
 
-class UserUpdateView(generic.UpdateView):
+class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
     """User update view."""
 
     model = User
-    form_class = UserUpdateForm
+    form_class = forms.UserUpdateForm
     template_name = "mixtape/generic_create_update_form.html"
-    # which page to show upon success
-    # replace “home” with one of the names in urls_patterns of urls.py
     success_url = reverse_lazy("mixtape:user_list")
     extra_context = {"title_text": "Updating Existing User!", "button_text": "Update"}
 
@@ -239,13 +216,11 @@ class UserUpdateView(generic.UpdateView):
         return super().get(request, *args, **kwargs)
 
 
-class UserDeleteView(generic.DeleteView):
+class UserDeleteView(LoginRequiredMixin, generic.DeleteView):
     """User delete view."""
 
     model = User
     template_name = "mixtape/user_confirm_delete.html"
-    # which page to show upon success
-    # replace “home” with one of the names in urls_patterns of urls.py
     success_url = reverse_lazy("mixtape:user_list")
 
     def get(self, request: object, *args, **kwargs) -> object:
