@@ -216,6 +216,7 @@ class UserCreateView(generic.CreateView):
 
     def form_valid(self, form):
         """Validate date."""
+        print(self.request.user)
         form.instance.user = self.request.user
         return super().form_valid(form)
 

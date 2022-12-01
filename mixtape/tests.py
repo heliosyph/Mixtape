@@ -1,4 +1,10 @@
-"""tests.py."""
-from django.test import TestCase
+"""Tests for `users` app."""
+from http import HTTPStatus
 
-# Create your tests here.
+import pytest
+from django.db.utils import IntegrityError
+from django.test import TestCase
+from django.urls import reverse
+from parameterized import parameterized
+
+from mixtape.models import Playlist, Song, User
