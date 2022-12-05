@@ -138,7 +138,7 @@ class PlaylistTestCase(TestCase):
 
     def test_create(self):
         """Tests if `Playlist`'s `create()` method is working using a query."""
-        customuser = CustomUser.objects.create_user(email="jdoe@gmail.com", password="password123")
+        CustomUser.objects.create_user(email="jdoe@gmail.com", password="password123")
 
         user = User.objects.create(
             username_creator="John Doe",
@@ -166,8 +166,6 @@ class PlaylistTestCase(TestCase):
         playlist.likes.add(user)
         playlist.songs.add(song)
 
-        self.assertTrue(isinstance(customuser, CustomUser))
-        self.assertEqual(str(customuser), "jdoe@gmail.com")
         query = Playlist.objects.get(playlist_name="pop")
         self.assertEqual(playlist, query)
 
@@ -177,7 +175,7 @@ class SongTestCase(TestCase):
 
     def test_create(self):
         """Tests if `Song`'s `create()` method is working using a query."""
-        customuser = CustomUser.objects.create_user(email="jdoe@gmail.com", password="password123")
+        CustomUser.objects.create_user(email="jdoe@gmail.com", password="password123")
 
         user = User.objects.create(
             username_creator="John Doe",
@@ -197,7 +195,5 @@ class SongTestCase(TestCase):
         )
         song.likes.add(user)
 
-        self.assertTrue(isinstance(customuser, CustomUser))
-        self.assertEqual(str(customuser), "jdoe@gmail.com")
         self.assertTrue(isinstance(song, Song))
         self.assertEqual(str(song), "song")
