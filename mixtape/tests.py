@@ -11,7 +11,6 @@ from django.db.utils import IntegrityError
 from django.test import TestCase
 from django.urls import NoReverseMatch, reverse
 from parameterized import parameterized
-from platformdirs import user_runtime_dir
 
 from mixtape.models import Playlist, Song, User
 from users.models import CustomUser
