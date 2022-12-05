@@ -75,7 +75,7 @@ class UserDeleteViewTestCase(TestCase):
 
     def test_user_delete_view_get_request(self):
         """Test User Delete view."""
-        CustomUser.objects.create_user(email="jdoe@gmail.com", password="password123")
+        CustomUser.objects.create_user(email="jdoe1@gmail.com", password="password123")
 
         user = User.objects.create(
             username_creator="John Doe",
@@ -114,7 +114,7 @@ class UserUpdateViewTestCase(TestCase):
     )
     def test_user_update_view(self, params, status_code):
         """Test User Update view with all information."""
-        CustomUser.objects.create_user(email="jdoe@gmail.com", password="password123")
+        CustomUser.objects.create_user(email="jdoe2@gmail.com", password="password123")
 
         user = User.objects.create(
             username_creator="John Doe",
@@ -149,7 +149,7 @@ class PlaylistTestCase(TestCase):
             song_length=timedelta(minutes=3, seconds=26),
             artist_name="coolguy",
             song_genre="pop",
-            album="cool songs",
+            album="cool songs!",
             isFavoriteSong=False,
         )
         song.likes.add(user)
@@ -157,7 +157,7 @@ class PlaylistTestCase(TestCase):
             playlist_name="pop",
             creator=user,
             isPrivate=False,
-            playlist_description="this is cool",
+            playlist_description="this is cool!",
         )  # not sure how likes and songs would work here (manytomanyfields)
         playlist.likes.add(user)
         playlist.songs.add(song)
@@ -185,7 +185,6 @@ class PlaylistCreateViewTestCase(TestCase):
     )
     def test_playlist_create_view(self, params, status_code):
         """Test Playlist create view with all information."""
-
         playlist_create_url = reverse("mixtape:playlist_create")
         response = self.client.post(playlist_create_url, data=params)
         self.assertEqual(response.status_code, status_code)
@@ -225,7 +224,7 @@ class PlaylistUpdateViewTestCase(TestCase):
             song_length=timedelta(minutes=3, seconds=26),
             artist_name="coolguy",
             song_genre="pop",
-            album="cool songs",
+            album="cool songs!",
             isFavoriteSong=False,
         )
         song.likes.add(user)
@@ -263,7 +262,7 @@ class PlaylistDeleteViewTestCase(TestCase):
             song_length=timedelta(minutes=3, seconds=26),
             artist_name="coolguy",
             song_genre="pop",
-            album="cool songs",
+            album="cool songs.",
             isFavoriteSong=False,
         )
         song.likes.add(user)
@@ -305,7 +304,7 @@ class SongTestCase(TestCase):
             song_length=timedelta(minutes=3, seconds=26),
             artist_name="coolguy",
             song_genre="pop",
-            album="cool songs",
+            album="cool songs.",
             isFavoriteSong=False,
         )
         song.likes.add(user)
@@ -335,7 +334,6 @@ class SongCreateViewTestCase(TestCase):
     )
     def test_song_create_view(self, params, status_code):
         """Test Song create view with all information."""
-
         song_create_url = reverse("mixtape:song_create")
         response = self.client.post(song_create_url, data=params)
         self.assertEqual(response.status_code, status_code)
