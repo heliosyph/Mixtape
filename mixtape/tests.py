@@ -71,7 +71,7 @@ class UserCreateViewTestCase(TestCase):
 
 
 class UserDeleteViewTestCase(TestCase):
-    """Testing user create view."""
+    """Testing user delete view."""
 
     def test_user_delete_view_get_request(self):
         """Test User Delete view."""
@@ -95,7 +95,7 @@ class UserDeleteViewTestCase(TestCase):
 
 
 class UserUpdateViewTestCase(TestCase):
-    """Testing user create view."""
+    """Testing user update view."""
 
     @parameterized.expand(
         [
@@ -166,6 +166,125 @@ class PlaylistTestCase(TestCase):
         self.assertEqual(playlist, query)
 
 
+class PlaylistCreateViewTestCase(TestCase):
+    """Testing playlist create view."""
+
+    @parameterized.expand(
+        [
+            (
+                {
+                    "playlist_name": "pop",
+                    "songs": "song",
+                    "likes": "John Doe",
+                    "isPrivate": False,
+                    "playlist_description": "this is cool",
+                },
+                HTTPStatus.FOUND,
+            ),
+        ]
+    )
+    def test_playlist_create_view(self, params, status_code):
+        """Test Playlist create view with all information."""
+
+        playlist_create_url = reverse("mixtape:playlist_create")
+        response = self.client.post(playlist_create_url, data=params)
+        self.assertEqual(response.status_code, status_code)
+
+
+class PlaylistUpdateViewTestCase(TestCase):
+    """Testing playlist update view."""
+
+    @parameterized.expand(
+        [
+            (
+                {
+                    "playlist_name": "cooler pop",
+                    "songs": "song",
+                    "likes": "John Doe",
+                    "isPrivate": True,
+                    "playlist_description": "this is cooler",
+                },
+                HTTPStatus.FOUND,
+            ),
+        ]
+    )
+    def test_playlist_update_view(self, params, status_code):
+        """Test Playlist Update view with all information."""
+        CustomUser.objects.create_user(email="jdoe@gmail.com", password="password123")
+
+        user = User.objects.create(
+            username_creator="John Doe",
+            user_id=1,
+            friend_name="Johnny",
+            favorite_genre="Hip-Hop/Rap",
+            favorite_artist="Metro Boomin",
+            status="Online",
+        )
+        song = Song.objects.create(
+            song_name="song",
+            song_length=timedelta(minutes=3, seconds=26),
+            artist_name="coolguy",
+            song_genre="pop",
+            album="cool songs",
+            isFavoriteSong=False,
+        )
+        song.likes.add(user)
+        playlist = Playlist.objects.create(
+            playlist_name="pop",
+            creator=user,
+            isPrivate=False,
+            playlist_description="this is cool",
+        )  # not sure how likes and songs would work here (manytomanyfields)
+        playlist.likes.add(user)
+        playlist.songs.add(song)
+
+        playlist_update_url = reverse("mixtape:playlist_update", args=[playlist.pk])
+        response = self.client.post(playlist_update_url, data=params)
+        self.assertEqual(response.status_code, status_code)
+
+
+class PlaylistDeleteViewTestCase(TestCase):
+    """Testing playlist delete view."""
+
+    def test_playlist_delete_view_get_request(self):
+        """Test Playlist Delete view."""
+        CustomUser.objects.create_user(email="jdoe@gmail.com", password="password123")
+
+        user = User.objects.create(
+            username_creator="John Doe",
+            user_id=1,
+            friend_name="Johnny",
+            favorite_genre="Hip-Hop/Rap",
+            favorite_artist="Metro Boomin",
+            status="Online",
+        )
+        song = Song.objects.create(
+            song_name="song",
+            song_length=timedelta(minutes=3, seconds=26),
+            artist_name="coolguy",
+            song_genre="pop",
+            album="cool songs",
+            isFavoriteSong=False,
+        )
+        song.likes.add(user)
+        playlist = Playlist.objects.create(
+            playlist_name="pop",
+            creator=user,
+            isPrivate=False,
+            playlist_description="this is cool",
+        )  # not sure how likes and songs would work here (manytomanyfields)
+        playlist.likes.add(user)
+        playlist.songs.add(song)
+
+        message_for_playlist_delete = self.client.delete(
+            reverse("mixtape:playlist_delete", args=[playlist.pk])
+        )
+        self.assertEqual(message_for_playlist_delete.status_code, HTTPStatus.FOUND)
+        with pytest.raises(NoReverseMatch) as exc_info:
+            self.client.delete(reverse("mixtape:Playlist", args=[playlist.pk]))
+        self.assertEqual(exc_info.type, NoReverseMatch)
+
+
 class SongTestCase(TestCase):
     """Tests for `Song` model."""
 
@@ -193,3 +312,108 @@ class SongTestCase(TestCase):
 
         self.assertTrue(isinstance(song, Song))
         self.assertEqual(str(song), "song")
+
+
+class SongCreateViewTestCase(TestCase):
+    """Testing song create view."""
+
+    @parameterized.expand(
+        [
+            (
+                {
+                    "song_name": "song",
+                    "song_length": timedelta(minutes=3, seconds=26),
+                    "artist_name": "coolguy",
+                    "song_genre": "pop",
+                    "album": "cool songs",
+                    "likes": "John Doe",
+                    "isFavoriteSong": False,
+                },
+                HTTPStatus.FOUND,
+            ),
+        ]
+    )
+    def test_song_create_view(self, params, status_code):
+        """Test Song create view with all information."""
+
+        song_create_url = reverse("mixtape:song_create")
+        response = self.client.post(song_create_url, data=params)
+        self.assertEqual(response.status_code, status_code)
+
+
+class SongUpdateViewTestCase(TestCase):
+    """Testing Song update view."""
+
+    @parameterized.expand(
+        [
+            (
+                {
+                    "song_name": "cooler song",
+                    "song_length": timedelta(minutes=3, seconds=27),
+                    "artist_name": "coolerguy",
+                    "song_genre": "cool pop",
+                    "album": "cooler songs",
+                    "likes": "John Doe",
+                    "isFavoriteSong": True,
+                },
+                HTTPStatus.FOUND,
+            ),
+        ]
+    )
+    def test_song_update_view(self, params, status_code):
+        """Test Song update view."""
+        CustomUser.objects.create_user(email="jdoe@gmail.com", password="password123")
+
+        user = User.objects.create(
+            username_creator="John Doe",
+            user_id=1,
+            friend_name="Johnny",
+            favorite_genre="Hip-Hop/Rap",
+            favorite_artist="Metro Boomin",
+            status="Online",
+        )
+        song = Song.objects.create(
+            song_name="song",
+            song_length=timedelta(minutes=3, seconds=26),
+            artist_name="coolguy",
+            song_genre="pop",
+            album="cool songs",
+            isFavoriteSong=False,
+        )
+        song.likes.add(user)
+
+        song_update_url = reverse("mixtape:song_update", args=[song.pk])
+        response = self.client.post(song_update_url, data=params)
+        self.assertEqual(response.status_code, status_code)
+
+
+class SongDeleteViewTestCase(TestCase):
+    """Testing Song delete view."""
+
+    def test_song_delete_view_get_request(self):
+        """Test Song Delete view."""
+        CustomUser.objects.create_user(email="jdoe@gmail.com", password="password123")
+
+        user = User.objects.create(
+            username_creator="John Doe",
+            user_id=1,
+            friend_name="Johnny",
+            favorite_genre="Hip-Hop/Rap",
+            favorite_artist="Metro Boomin",
+            status="Online",
+        )
+        song = Song.objects.create(
+            song_name="song",
+            song_length=timedelta(minutes=3, seconds=26),
+            artist_name="coolguy",
+            song_genre="pop",
+            album="cool songs",
+            isFavoriteSong=False,
+        )
+        song.likes.add(user)
+
+        message_for_song_delete = self.client.delete(reverse("mixtape:song_delete", args=[song.pk]))
+        self.assertEqual(message_for_song_delete.status_code, HTTPStatus.FOUND)
+        with pytest.raises(NoReverseMatch) as exc_info:
+            self.client.delete(reverse("mixtape:Song", args=[song.pk]))
+        self.assertEqual(exc_info.type, NoReverseMatch)
