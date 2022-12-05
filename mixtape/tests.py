@@ -1,10 +1,6 @@
 """Tests for `users` app."""
-from ast import Delete
 from datetime import timedelta
 from http import HTTPStatus
-from re import M
-from telnetlib import STATUS
-from venv import create
 
 import pytest
 from django.db.utils import IntegrityError
