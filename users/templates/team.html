@@ -1,55 +1,85 @@
-{% extends "base_generic.html" %}
-{% load static %}
-{% block style %}
-{% endblock style %}
-{% block title %}
-    Meet our team
-{% endblock title %}
-{% block content %}
-    <div class="justify-content-center">
-        <div class="text-center d-flex">
-            <div class="col-md-3 col-sm-6 mb-4">
-                <img src="https://media-exp1.licdn.com/dms/image/D5603AQENYn_T31e1yg/profile-displayphoto-shrink_400_400/0/1666050308743?e=1674086400&v=beta&t=2zhdtJ7nDbIQqMGljQDJSK1i_npRYWk3GignsO-meo8" class="img-circle" alt="Cinque Terre" width="250" height="250">
-                <!-- Replace 'Name' with the Project Lead's name -->
-                <h4 class="fw-bold">Cameron Washington</h4>
-                <p class="fw-bold">Project Lead</p>
-                <!-- Update hrefs with the URLs to email, linked, and gitlab -->
-                <a href="cameron.washington1@louisiana.edu" target="_blank"><i class="fa-solid fa-envelope"></i></a> |
-                <a href="https://www.linkedin.com/in/cameron-washington-46646a1a3"
-                   target="_blank"><i class="fa-brands fa-linkedin"></i></a> |
-                <a href="https://gitlab.com/cameronwashington12" target="_blank"><i class="fa-brands fa-gitlab"></i></a>
-            </div>
-            <div class="col-md-3 col-sm-6 mb-4">
-                <i class="fa-regular fa-circle-user fa-8x mb-2"></i>
-                <!-- Replace 'Name' with the Tech Lead's name -->
-                <h4 class="fw-bold">Luke Brinkley</h4>
-                <p class="fw-bold">Tech Lead</p>
-                <!-- Update hrefs with the URLs to email, linked, and gitlab -->
-                <a href="luke.brinkley1@louisiana.edu" target="_blank"><i class="fa-solid fa-envelope"></i></a> |
-                <a href="https://www.linkedin.com/in/luke-brinkley-a2121a255"
-                   target="_blank"><i class="fa-brands fa-linkedin"></i></a> |
-                <a href="https://gitlab.com/lbrinkley8" target="_blank"><i class="fa-brands fa-gitlab"></i></a>
-            </div>
-            <div class="col-md-3 col-sm-6 mb-4">
-                <i class="fa-regular fa-circle-user fa-8x mb-2"></i>
-                <!-- Replace 'Name' with the Product Lead's name -->
-                <h4 class="fw-bold">Kristian Lasserre</h4>
-                <p class="fw-bold">Product Lead</p>
-                <!-- Update hrefs with the URLs to email, linked, and gitlab -->
-                <a href="kristian.lasserre1@louisiana.edu" target="_blank"><i class="fa-solid fa-envelope"></i></a> |
-                <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a> |
-                <a href="https://gitlab.com/klasserre2002" target="_blank"><i class="fa-brands fa-gitlab"></i></a>
-            </div>
-            <div class="col-md-3 col-sm-6 mb-4">
-                <i class="fa-regular fa-circle-user fa-8x mb-2"></i>
-                <!-- Replace 'Name' with the QA's name -->
-                <h4 class="fw-bold">Amy Canelas</h4>
-                <p class="fw-bold">Quality Assurance</p>
-                <!-- Update hrefs with the URLs to email, linked, and gitlab -->
-                <a href="amy.canelas1@louisiana.edu" target="_blank"><i class="fa-solid fa-envelope"></i></a> |
-                <a href="https://www.linkedin.com/in/amycanelas" target="_blank"><i class="fa-brands fa-linkedin"></i></a> |
-                <a href="https://gitlab.com/amygiselle" target="_blank"><i class="fa-brands fa-gitlab"></i></a>
-            </div>
-        </div>
+{% extends "base_generic.html" %} {% load static %} {% block style %} {% endblock style %}
+<title>{% block title %} Meet our Team {% endblock title %}</title> {% block content %}
+<div class="justify-content-center">
+  <div class="text-center d-flex">
+    <div class="col-md-3 col-sm-6 mb-4">
+      <img
+        src="https://media-exp1.licdn.com/dms/image/D5603AQENYn_T31e1yg/profile-displayphoto-shrink_400_400/0/1666050308743?e=1674086400&v=beta&t=2zhdtJ7nDbIQqMGljQDJSK1i_npRYWk3GignsO-meo8"
+        class="img-circle"
+        alt="Cinque Terre"
+        width="250"
+        height="250"
+      />
+      <!-- Replace 'Name' with the Project Lead's name -->
+      <h4 class="fw-bold">Cameron Washington</h4>
+      <p class="fw-bold">Project Lead</p>
+      <!-- Update hrefs with the URLs to email, linked, and gitlab -->
+      <a href="cameron.washington1@louisiana.edu" target="_blank"
+        ><i class="fa-solid fa-envelope"></i
+      ></a>
+      |
+      <a href="https://www.linkedin.com/in/cameron-washington-46646a1a3" target="_blank"
+        ><i class="fa-brands fa-linkedin"></i
+      ></a>
+      |
+      <a href="https://gitlab.com/cameronwashington12" target="_blank"
+        ><i class="fa-brands fa-gitlab"></i
+      ></a>
     </div>
+    <div class="col-md-3 col-sm-6 mb-4">
+      <i class="fa-regular fa-circle-user fa-8x mb-2"></i>
+      <!-- Replace 'Name' with the Tech Lead's name -->
+      <h4 class="fw-bold">Luke Brinkley</h4>
+      <p class="fw-bold">Tech Lead</p>
+      <!-- Update hrefs with the URLs to email, linked, and gitlab -->
+      <a href="luke.brinkley1@louisiana.edu" target="_blank"
+        ><i class="fa-solid fa-envelope"></i
+      ></a>
+      |
+      <a href="https://www.linkedin.com/in/luke-brinkley-a2121a255" target="_blank"
+        ><i class="fa-brands fa-linkedin"></i
+      ></a>
+      |
+      <a href="https://gitlab.com/lbrinkley8" target="_blank"
+        ><i class="fa-brands fa-gitlab"></i
+      ></a>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-4">
+      <i class="fa-regular fa-circle-user fa-8x mb-2"></i>
+      <!-- Replace 'Name' with the Product Lead's name -->
+      <h4 class="fw-bold">Kristian Lasserre</h4>
+      <p class="fw-bold">Product Lead</p>
+      <!-- Update hrefs with the URLs to email, linked, and gitlab -->
+      <a href="kristian.lasserre1@louisiana.edu" target="_blank"
+        ><i class="fa-solid fa-envelope"></i
+      ></a>
+      | <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a> |
+      <a href="https://gitlab.com/klasserre2002" target="_blank"
+        ><i class="fa-brands fa-gitlab"></i
+      ></a>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-4">
+      <img
+        src="https://avatars.githubusercontent.com/u/100646255?s=400&u=673c984042d3cb0f8e1db0435a5bd32e195d4e47&v=4433"
+        class="img-circle"
+        alt="Amy Canelas picture"
+        width="250"
+        height="250"
+      />
+      <!-- Replace 'Name' with the QA's name -->
+      <h4 class="fw-bold">Amy Canelas</h4>
+      <p class="fw-bold">Quality Assurance</p>
+      <!-- Update hrefs with the URLs to email, linked, and gitlab -->
+      <a href="amy.canelas1@louisiana.edu" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+      |
+      <a href="https://www.linkedin.com/in/amycanelas" target="_blank"
+        ><i class="fa-brands fa-linkedin"></i
+      ></a>
+      |
+      <a href="https://gitlab.com/amygiselle" target="_blank"
+        ><i class="fa-brands fa-gitlab"></i
+      ></a>
+    </div>
+  </div>
+</div>
 {% endblock content %}
