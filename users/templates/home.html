@@ -1,61 +1,104 @@
 {% extends "base_generic.html" %} {% block content %}
 <!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="p-5 mb-4 bg-light rounded-3">
+<div class="p-5 mb-4 bg-dark text-white rounded-3">
   <div class="py-5">
     <div class="text-center">
-        <h1 class="display-3 fw-bold">Mixtape</h1>
-        <p>Start making your ultimate playlist!</p>
-        <a class="btn btn-primary" href="{% url 'mixtape:playlist_create' %}">
+      <h1 class="display-3 fw-bold">Mixtape</h1>
+      <p>Start making your ultimate playlist!</p>
+      <a class="btn btn-primary" href="{% url 'mixtape:playlist_create' %}">
         <i class="fa-solid fa-music"></i> Create your Mix!
-        </a>
+      </a>
     </div>
   </div>
 </div>
-<div class="py-5">
-  <div class="row align-items-md-stretch">
-    <div class="col-md-6">
-      <div class="h-100 p-5 bg-light rounded-3">
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="2000">
+            <img
+              src="https://media.pitchfork.com/photos/608839f84c67840074db8afb/1:1/w_3000,h_3000,c_limit/Billie-Eilish-Happier-Than-Ever.jpeg"
+              class="d-block w-100 mx-auto rounder-3"
+              alt="billie eilish album cover"
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img
+              src="https://storage.googleapis.com/afs-prod/media/1914111456df412ead426320775ead9b/1500.jpeg"
+              class="d-block w-100 mx-auto rounder-3"
+              alt="doja cat album cover"
+            />
+          </div>
+          <div class="carousel-item active" data-bs-interval="2000">
+            <img
+              src="https://media.pitchfork.com/photos/627425dbc85171592b8a6e6a/1:1/w_600/Bad-Bunny-Un-Verano-Sin-Ti.jpg"
+              class="d-block w-100 mx-auto rounded-3"
+              alt="bad bunny album cover"
+            />
+          </div>
+          <div class="carousel-item active" data-bs-interval="2000">
+            <img
+              src="https://e.snmc.io/i/1200/s/7bf8aaf8cc4a6d4ec34c721d5eb509d8/6900345"
+              class="d-block w-100 mx-auto rounded-3"
+              alt="twin seat headrest album cover"
+            />
+          </div>
+          <div class="carousel-item active" data-bs-interval="400">
+            <img
+              src="https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2015/3/11/1426099817173/f1efb3f4-9a6d-4f78-8ca8-594ab646d198-bestSizeAvailable.jpeg?width=465&quality=85&dpr=1&s=none"
+              class="d-block w-100 mx-auto rounded-3"
+              alt="kendrick album cover"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="col">
+      <div class="h-100 p-5 bg-dark text-white rounded-3">
         <p>
           For music lovers who want to blend different music tastes and influences into one singular
           playlist. Mixtape is a playlist generator that generates a singular playlist from other
           user’s playlist to merge their different music tastes to find music they all like. Unlike
           Spotify our product would allow more than two users to fuse their playlists together.
         </p>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="34"
+          height="34"
+          fill="green"
+          class="bi bi-heart-pulse"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01L8 2.748ZM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5Z"
+          />
+          <path
+            d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162l-1.874-4.686Z"
+          />
+        </svg>
       </div>
     </div>
   </div>
 </div>
-
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="img/doja.jpeg" class="d-block w-200" alt="first album cover" />
-    </div>
-    <div class="carousel-item">
-      <img src="img/bad_bunny.jpeg" class="d-block w-200" alt="second album cover" />
-    </div>
-    <div class="carousel-item">
-      <img src="img/alter_bridge.jpeg" class="d-block w-200" alt="third album cover" />
-    </div>
-  </div>
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExampleFade"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExampleFade"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-
 {% endblock content %}
