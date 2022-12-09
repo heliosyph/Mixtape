@@ -85,6 +85,14 @@ class UserDetailView(LoginRequiredMixin, generic.DetailView):
     model = User
     template_name = "mixtape/user_detail.html"
 
+    def get_context_data(self, **kwargs):
+        """Check if user owns profile."""
+        context = super().get_context_data(**kwargs)
+        print(self.get_object().user)
+        print(self.request.user)
+        context["is_user"] = self.get_object().user == self.request.user
+        return context
+
     def get(self, request: object, *args, **kwargs) -> object:
         """If user is not logged in, redirect to sign in page."""
         if not self.request.user.is_authenticated:

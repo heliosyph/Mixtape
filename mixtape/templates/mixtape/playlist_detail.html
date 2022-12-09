@@ -1,8 +1,7 @@
-{% extends "base_generic.html" %} {% block content %}
-
-<head>
-  <style>
-
+{% extends "base_generic.html" %}
+{% block content %}
+  <head>
+    <style>
     p{
       font-size: 1.2rem;
     }
@@ -29,54 +28,51 @@
 
 
 
-  </style>
-</head>
-<body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col">
-        <div class="text-center">
-          <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/cool-animated-video-music-album-cover-design-template-b32363ff46d21798e89fe1333c50a6fc_screen.jpg?ts=1633603106" class="w-75 rounded-3" />
-
-
-
-          <h2 class="playlist-title">{{ object.playlist_name }}</h2>
-          <h4>Created by: {{ object.creator }}</h4>
-          {% if object.isPrivate %}
-          <h5>Not Public</h5>
-          {% endif %}
-          <p class="playlist-description">Description: {{ object.playlist_description }}</p>
-          <br />
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="text-center">
+            <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/cool-animated-video-music-album-cover-design-template-b32363ff46d21798e89fe1333c50a6fc_screen.jpg?ts=1633603106"
+                 class="w-75 rounded-3"/>
+            <h2 class="playlist-title">{{ object.playlist_name }}</h2>
+            <h4>Created by: {{ object.creator }}</h4>
+            {% if object.isPrivate %}<h5>Not Public</h5>{% endif %}
+            <p class="playlist-description">Description: {{ object.playlist_description }}</p>
+            <br />
+          </div>
+          <div class="text-start">
+            <h4>Songs:</h4>
+            <br />
+            {% for songs in object.songs.all %}
+              <a class="btn btn-light" href="{% url 'mixtape:song_detail' songs.id %}">
+                <i class="fa-solid fa-music"></i> {{ songs }}
+              </a>
+              <br />
+            {% endfor %}
+          </div>
         </div>
-        <div class="text-start">
-          <h4>Songs:</h4>
-          <br />
-          {% for songs in object.songs.all %}
-          <a class="btn btn-light" href="{% url 'mixtape:song_detail' songs.id %}">
-            <i class="fa-solid fa-music"></i> {{ songs }}
-          </a>
-          <br />
-          {% endfor %}
-        </div>
-      </div>
-
-      <div class="col">
-      <div class="text-center">
-          <h4>Liked by:</h4>
-          <br />
-          {% for likes in object.likes.all %}
-          <a class="btn btn-light btn-user" href="{% url 'mixtape:user_detail' likes.id %}">
-            <i class="fa-solid fa-user"></i> {{ likes }}
-          </a>
-          {% endfor %}
-        </div>
-
+        <div class="col">
+          <div class="text-center">
+            <h4>Liked by:</h4>
+            <br />
+            {% for likes in object.likes.all %}
+              <a class="btn btn-light btn-user"
+                 href="{% url 'mixtape:user_detail' likes.id %}">
+                <i class="fa-solid fa-user"></i> {{ likes }}
+              </a>
+            {% endfor %}
+          </div>
           <div class="text-center">
             {% if user.is_authenticated and is_owner %}
-              <a class="btn btn-primary btn-color" href="{% url 'mixtape:playlist_update' pk=playlist.pk %}">
+              <a class="btn btn-primary btn-color"
+                 href="{% url 'mixtape:playlist_update' pk=playlist.pk %}">
                 <i class="fa-solid fa-plus"></i> Update Playlist
               </a>
-              <a class="btn btn-dark" href="{% url 'mixtape:playlist_delete' pk=playlist.pk %}">
+              <a class="btn btn-dark"
+                 href="{% url 'mixtape:playlist_delete' pk=playlist.pk %}">
                 <i class="fa-solid fa-trash-can"></i> Delete Playlist
               </a>
             {% endif %}
