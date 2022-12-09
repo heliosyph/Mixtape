@@ -1,12 +1,42 @@
-{% extends "base_generic.html" %} {% block content %} {% if object_list %}
-<ul>
-  <h3>Created Users</h3>
-  {% for object in object_list %}
-  <li>
-    <a href="{% url 'mixtape:user_detail' object.id %}">{{ object.username_creator }}</a>
-  </li>
-  {% endfor %}
-</ul>
-{% else %}
-<p>No users are available.</p>
-{% endif %} {% endblock content %}
+{% extends "base_generic.html" %}
+{% block content %}
+  {% if object_list %}
+    <head>
+      <style>
+    a {
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    body {
+      background: rgb(174, 238, 178);
+      background: radial-gradient(circle, rgba(174, 238, 178, 1) 0%, rgba(233, 148, 226, 1) 100%);
+    }
+
+    .overall-div {
+      padding: 5rem 10rem;
+      background-color: #f4f4f4;
+      margin-top: 10rem;
+    }
+      </style>
+    </head>
+    <ul>
+      <div class="overall-div rounded-3">
+        <h3 class="text-center">Friend List</h3>
+        {% for object in object_list %}
+          <div class="text-center">
+            <li>
+              <a href="{% url 'mixtape:user_detail' object.id %}">{{ object.username_creator }}</a>
+            </li>
+          </div>
+        </div>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No users are available.</p>
+  {% endif %}
+{% endblock content %}
