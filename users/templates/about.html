@@ -1,21 +1,49 @@
 {% extends "base_generic.html" %} {% block content %}
-<div class="container py-5">
-  <div class="h-100 p-5 bg-light text-dark rounded-3">
-    <h1>About Us</h1>
-    <p>
-      Mixtape automatically creates a collaborative playlist using your own and any number of
-      friends' music tastes and favorite songs smoothly blended together so that everyone can
-      listen. Just link any assortment of playlists you want and Mixtape will shuffle through them
-      all. Mixtape is perfect for providing group sessions with music that each member can enjoy
-      listening to in the background. Mixtape has other uses too, like providing users with a new
-      way to experiment with their music. Not everyone likes to jump right into a new genre, but
-      Mixtape provides a new opportunity for users to choose how they can. The variety is dependent
-      on the user as they can choose how many albums or playlists to pool together, so they can get
-      a bit of everything or something more specific. Mixtape can pick and choose songs that are
-      similar among playlists, which can allow users to discover songs close to their style. It can
-      also choose songs at random for users to experiment listening to.
-    </p>
+
+<head>
+  <style>
+    h1 {
+      font-size: 2.8rem;
+      letter-spacing: 1.2px;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+    body {
+      background: rgb(174, 238, 178);
+      background: radial-gradient(circle, rgba(174, 238, 178, 1) 3%, rgba(233, 148, 226, 1) 100%);
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div class="h-100 p-5 bg-transparent">
+      <h1>About Us</h1>
+      <p>
+        Mixtape automatically creates a collaborative playlist using your own and any number of
+        friends' music tastes and favorite songs smoothly blended together so that everyone can
+        listen. Just link any assortment of playlists you want and Mixtape will shuffle through them
+        all. Mixtape is perfect for providing group sessions with music that each member can enjoy
+        listening to in the background.
+      </p>
+      <br />
+      <p>
+        Mixtape is perfect for providing group sessions with music that each member can enjoy
+        listening to in the background. Mixtape has other uses too, like providing users with a new
+        way to experiment with their music. Not everyone likes to jump right into a new genre, but
+        Mixtape provides a new opportunity for users to choose how they can. The variety is
+        dependent on the user as they can choose how many albums or playlists to pool together, so
+        they can get a bit of everything or something more specific.
+      </p>
+      <p>
+        Mixtape can pick and choose songs that are similar among playlists, which can allow users to
+        discover songs close to their style. It can also choose songs at random for users to
+        experiment listening to.
+      </p>
+    </div>
   </div>
-</div>
+</body>
 
 {% endblock content %}

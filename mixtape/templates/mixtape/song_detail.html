@@ -1,32 +1,48 @@
 {% extends "base_generic.html" %}
 {% block content %}
+
+
+<head>
+  <style>
+    body {
+      background: rgb(174, 238, 178);
+      background: radial-gradient(circle, rgba(174, 238, 178, 1) 3%, rgba(233, 148, 226, 1) 100%);
+    }
+
+    .btn-color{
+      background-color: purple;
+    }
+
+    .btn-user{
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col">
         <div class="text-center">
-          <img src="https://via.placeholder.com/300X250" />
+          <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/cool-album-cover-design-template-02cee2f3dcf2aa70bd2f727a507b31eb_screen.jpg?ts=1607974297" class="w-75" />
 
           <h1>{{ object.song_name }}
           {% if object.isFavoriteSong %}
-          <i class='fa fa-heart' style='color: red'></i>
+          <i class='fa fa-heart' style='color: purple'></i>
           {% endif %}
           </h1>
-          <h2>{{ object.album }}</h2>
-          <h3>Song by: {{ object.artist_name }}</h3>
-          <p>Song Length: {{ object.song_length }}</p>
-          <br />
-          <p>{{ object.song_genre }}</p>
-          <br />
+          <h3>{{ object.album }}</h3>
+          <h4>Song by: {{ object.artist_name }}</h4>
+          <p>Song Length: {{ object.song_length }} | {{ object.song_genre }} </p>
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col">
       <div class="text-center">
           <h4>Liked by:</h4>
           <br />
           {% for likes in object.likes.all %}
-          <a class="btn btn-light" href="{% url 'mixtape:user_detail' pk=user.pk %}">
+          <a class="btn btn-light btn-user" href="{% url 'mixtape:user_detail' pk=user.pk %}">
             <i class="fa-solid fa-user"></i> {{ likes }}
           </a>
           <br />
@@ -35,11 +51,11 @@
 
           <div class="text-center">
             {% if user.is_superuser %}
-                <a class="btn btn-primary"
+                <a class="btn btn-primary btn-color"
                     href="{% url 'mixtape:song_update' pk=song.pk %}">
                     <i class="fa-solid fa-plus"></i> Update Song
                 </a>
-                <a class="btn btn-danger"
+                <a class="btn btn-dark"
                     href="{% url 'mixtape:song_delete' pk=song.pk %}">
                     <i class="fa-solid fa-trash-can"></i> Delete Song
                 </a>
